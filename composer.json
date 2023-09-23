@@ -1,11 +1,14 @@
 {
-    "name": "maartenpaauw/filament-cashier-stripe-billing-provider",
+    "name": "maartenpaauw/filament-cashier-billing-provider",
     "description": "Filament billing provider for Laravel Cashier",
     "keywords": [
         "maartenpaauw",
-        "filament-cashier-stripe-billing-provider"
+        "billing provider",
+        "cashier",
+        "filament",
+        ""
     ],
-    "homepage": "https://github.com/maartenpaauw/filament-cashier-stripe-billing-provider",
+    "homepage": "https://github.com/maartenpaauw/filament-cashier-billing-provider",
     "license": "MIT",
     "authors": [
         {
@@ -15,7 +18,9 @@
         }
     ],
     "require": {
-        "php": "^8.1"
+        "php": "^8.1",
+        "filament/filament": "^3.0",
+        "laravel/cashier": "^14.12"
     },
     "require-dev": {
         "pestphp/pest": "^2.15",
@@ -24,12 +29,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Maartenpaauw\\Filament\\Cashier\\FilamentCashierStripeBillingProvider\\": "src"
+            "Maartenpaauw\\Filament\\Cashier\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Maartenpaauw\\Filament\\Cashier\\FilamentCashierStripeBillingProvider\\Tests\\": "tests"
+            "Maartenpaauw\\Filament\\Cashier\\Tests\\": "tests"
         }
     },
     "scripts": {
