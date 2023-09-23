@@ -3,10 +3,10 @@
     "description": "Filament billing provider for Laravel Cashier",
     "keywords": [
         "maartenpaauw",
-        "billing provider",
-        "cashier",
+        "laravel",
         "filament",
-        ""
+        "cashier",
+        "billing-provider"
     ],
     "homepage": "https://github.com/maartenpaauw/filament-cashier-billing-provider",
     "license": "MIT",
