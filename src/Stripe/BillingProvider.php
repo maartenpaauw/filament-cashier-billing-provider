@@ -13,7 +13,7 @@ use Laravel\Cashier\Billable;
 use Laravel\Cashier\Cashier;
 use LogicException;
 
-final class CashierStripeBillingProvider implements Provider
+final class BillingProvider implements Provider
 {
     public function __construct(
         private readonly string $plan,

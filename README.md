@@ -39,7 +39,7 @@ Add plans to your `cashier.php` config file:
 Add the following code to your `AdminPanelProvider` (or other panel providers):
 
 ```php
-use Maartenpaauw\Filament\Cashier\Stripe\CashierStripeBillingProvider;
+use Maartenpaauw\Filament\Cashier\Stripe\BillingProvider;
 
 // ...
 
@@ -47,7 +47,7 @@ public function panel(Panel $panel): Panel
 {
     return $panel
         // ...
-        ->tenantBillingProvider(new CashierStripeBillingProvider('basic'))
+        ->tenantBillingProvider(new BillingProvider('basic'))
         ->requiresTenantSubscription()
         // ...
 }
