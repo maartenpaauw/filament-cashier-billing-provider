@@ -4,15 +4,13 @@
 [![Tests](https://img.shields.io/github/actions/workflow/status/maartenpaauw/filament-cashier-billing-provider/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/maartenpaauw/filament-cashier-billing-provider/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/maartenpaauw/filament-cashier-billing-provider.svg?style=flat-square)](https://packagist.org/packages/maartenpaauw/filament-cashier-billing-provider)
 
-This is where your description should go. Try and limit it to a paragraph or two. Consider adding a small example.
+Add Laravel Cashier Stripe support to Filament multi tenant panels.
 
-## Support us
+## Support me
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/filament-cashier-billing-provider.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/filament-cashier-billing-provider)
+[<img src="https://filamentphp.com/images/content/plugins/images/maartenpaauw-pennant.jpg?t=1" width="700px" />](https://filamentphp.com/plugins/maartenpaauw-pennant)
 
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+You can support me by [buying Pennant feature flags for Filament](https://spatie.be/open-source/support-us).
 
 ## Installation
 
@@ -25,8 +23,18 @@ composer require maartenpaauw/filament-cashier-billing-provider
 ## Usage
 
 ```php
-$skeleton = new Maartenpaauw\\Filament\\Cashier\FilamentCashierStripeBillingProvider();
-echo $skeleton->echoPhrase('Hello, Maartenpaauw\\Filament\\Cashier!');
+use Maartenpaauw\Filament\Cashier\Stripe\CashierStripeBillingProvider;
+
+// ...
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        // ...
+        ->tenantBillingProvider(new CashierStripeBillingProvider('basic'))
+        ->requiresTenantSubscription()
+        // ...
+}
 ```
 
 ## Testing
@@ -41,7 +49,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Contributing
 
-Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/main/CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
