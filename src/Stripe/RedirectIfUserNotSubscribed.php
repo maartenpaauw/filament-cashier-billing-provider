@@ -24,7 +24,8 @@ final class RedirectIfUserNotSubscribed
     }
 
     /**
-     * @param Closure(Request): (Response) $next
+     * @param  Closure(Request): (Response)  $next
+     *
      * @throws Exception
      */
     public function handle(Request $request, Closure $next, string $plan): Response
