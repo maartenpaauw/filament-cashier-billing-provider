@@ -44,10 +44,10 @@ final class RedirectIfUserNotSubscribed
             return $next($request);
         }
 
-        $monthlyId = $this->repository->get("cashier.plans.$plan.monthly_id");
+        $priceId = $this->repository->get("cashier.plans.$plan.price_id");
         $trialDays = $this->repository->get("cashier.plans.$plan.trial_days");
 
-        return $tenant->newSubscription($plan, $monthlyId)
+        return $tenant->newSubscription($plan, $priceId)
             ->allowPromotionCodes()
             ->trialUntil(Carbon::now()->endOfDay()->addDays($trialDays))
             ->collectTaxIds()

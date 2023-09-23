@@ -22,6 +22,22 @@ composer require maartenpaauw/filament-cashier-billing-provider
 
 ## Usage
 
+Add plans to your `cashier.php` config file:
+
+```php
+'plans' => [
+    'basic' => [
+        'trial_days' => 14,
+        'price_id' => ENV('CASHIER_STRIPE_SUBSCRIPTION_BASIC_PRICE_ID'),
+    ],
+],
+```
+
+> **Warning**
+> The current implementation only supports recurring subscriptions with trial days required.
+
+Add the following code to your `AdminPanelProvider` (or other panel providers):
+
 ```php
 use Maartenpaauw\Filament\Cashier\Stripe\CashierStripeBillingProvider;
 
@@ -36,6 +52,9 @@ public function panel(Panel $panel): Panel
         // ...
 }
 ```
+
+> **Note**
+> Requiring tenant subscription is optional. You can remove `->requiresTenantSubscription()` if you wish.
 
 ## Testing
 
