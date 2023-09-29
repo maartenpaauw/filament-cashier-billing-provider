@@ -41,7 +41,7 @@ final class RedirectIfUserNotSubscribed
             throw new LogicException('Customer model does not use Cashier Billable trait');
         }
 
-        if ($tenant->subscribed('basic')) {
+        if ($tenant->subscribed($plan)) {
             return $next($request);
         }
 
