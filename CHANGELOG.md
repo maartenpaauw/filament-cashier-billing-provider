@@ -2,6 +2,22 @@
 
 All notable changes to `filament-cashier-billing-provider` will be documented in this file.
 
+## v1.1.0 - 2024-02-01
+
+### What's Changed
+
+* chore(deps): bump stefanzweifel/git-auto-commit-action from 4 to 5 by @dependabot in https://github.com/maartenpaauw/filament-cashier-billing-provider/pull/2
+* chore(deps): bump aglipanci/laravel-pint-action from 2.3.0 to 2.3.1 by @dependabot in https://github.com/maartenpaauw/filament-cashier-billing-provider/pull/3
+* Optional trial days by @maartenpaauw in https://github.com/maartenpaauw/filament-cashier-billing-provider/pull/4
+* Optional collect tax ids by @maartenpaauw in https://github.com/maartenpaauw/filament-cashier-billing-provider/pull/5
+
+### New Contributors
+
+* @dependabot made their first contribution in https://github.com/maartenpaauw/filament-cashier-billing-provider/pull/2
+* @maartenpaauw made their first contribution in https://github.com/maartenpaauw/filament-cashier-billing-provider/pull/4
+
+**Full Changelog**: https://github.com/maartenpaauw/filament-cashier-billing-provider/compare/1.0.1...1.1.0
+
 ## v1.0.1 - 2023-09-29
 
 ### What's Changed
