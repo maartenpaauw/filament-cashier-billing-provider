@@ -47,11 +47,12 @@ final class RedirectIfUserNotSubscribed
 
         $priceId = $this->repository->get("cashier.plans.$plan.price_id");
         $trialDays = $this->repository->get("cashier.plans.$plan.trial_days", false);
+        $collectTaxIds = $this->repository->get("cashier.plans.$plan.collect_tax_ids", false);
 
         return $tenant->newSubscription($plan, $priceId)
             ->allowPromotionCodes()
             ->when($trialDays, static fn (SubscriptionBuilder $subscription) => $subscription->trialDays($trialDays))
-            ->collectTaxIds()
+            ->when($collectTaxIds, static fn (SubscriptionBuilder $subscription) => $subscription->collectTaxIds())
             ->checkout([
                 'success_url' => Dashboard::getUrl(),
                 'cancel_url' => Dashboard::getUrl(),
