@@ -22,7 +22,7 @@
         "filament/filament": "^3.0",
         "illuminate/config": "^10.0",
         "illuminate/support": "^10.0",
-        "laravel/cashier": "^14.0"
+        "laravel/cashier": "^14.12.7"
     },
     "require-dev": {
         "pestphp/pest": "^2.15",
