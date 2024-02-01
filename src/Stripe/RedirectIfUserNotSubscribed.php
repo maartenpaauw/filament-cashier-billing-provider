@@ -10,9 +10,9 @@ use Filament\Facades\Filament;
 use Filament\Pages\Dashboard;
 use Illuminate\Config\Repository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Laravel\Cashier\Billable;
 use Laravel\Cashier\Cashier;
+use Laravel\Cashier\SubscriptionBuilder;
 use LogicException;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -46,11 +46,11 @@ final class RedirectIfUserNotSubscribed
         }
 
         $priceId = $this->repository->get("cashier.plans.$plan.price_id");
-        $trialDays = $this->repository->get("cashier.plans.$plan.trial_days");
+        $trialDays = $this->repository->get("cashier.plans.$plan.trial_days", false);
 
         return $tenant->newSubscription($plan, $priceId)
             ->allowPromotionCodes()
-            ->trialUntil(Carbon::now()->endOfDay()->addDays($trialDays))
+            ->when($trialDays, static fn (SubscriptionBuilder $subscription) => $subscription->trialDays($trialDays))
             ->collectTaxIds()
             ->checkout([
                 'success_url' => Dashboard::getUrl(),

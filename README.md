@@ -27,14 +27,14 @@ Add plans to your `cashier.php` config file:
 ```php
 'plans' => [
     'basic' => [
-        'trial_days' => 14,
         'price_id' => ENV('CASHIER_STRIPE_SUBSCRIPTION_BASIC_PRICE_ID'),
+        'trial_days' => 14, // Optional
     ],
 ],
 ```
 
 > **Warning**
-> The current implementation only supports recurring subscriptions with trial days required.
+> The current implementation only supports recurring subscriptions.
 
 Add the following code to your `AdminPanelProvider` (or other panel providers):
 
