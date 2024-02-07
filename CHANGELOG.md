@@ -2,6 +2,14 @@
 
 All notable changes to `filament-cashier-billing-provider` will be documented in this file.
 
+## v1.2.0 - 2024-02-07
+
+### What's Changed
+
+* Add support for Cashier v15
+
+**Full Changelog**: https://github.com/maartenpaauw/filament-cashier-billing-provider/compare/1.1.0...1.2.0
+
 ## v1.1.0 - 2024-02-01
 
 ### What's Changed
