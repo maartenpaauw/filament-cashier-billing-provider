@@ -2,6 +2,14 @@
 
 All notable changes to `filament-cashier-billing-provider` will be documented in this file.
 
+## v1.3.0 - 2024-03-01
+
+### What's Changed
+
+* Use the default plan as default by @maartenpaauw in https://github.com/maartenpaauw/filament-cashier-billing-provider/pull/7
+
+**Full Changelog**: https://github.com/maartenpaauw/filament-cashier-billing-provider/compare/1.2.0...1.3.0
+
 ## v1.2.0 - 2024-02-07
 
 ### What's Changed
