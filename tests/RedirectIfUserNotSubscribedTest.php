@@ -12,3 +12,12 @@ it('should add the plan as parameter', function () {
     expect($middleware)
         ->toEqual('Maartenpaauw\Filament\Cashier\Stripe\RedirectIfUserNotSubscribed:basic');
 });
+
+it('should use the default plan when no plan provided', function () {
+    // Act
+    $middleware = RedirectIfUserNotSubscribed::plan();
+
+    // Assert
+    expect($middleware)
+        ->toEqual('Maartenpaauw\Filament\Cashier\Stripe\RedirectIfUserNotSubscribed:default');
+});

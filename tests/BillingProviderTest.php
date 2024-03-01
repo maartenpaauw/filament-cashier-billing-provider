@@ -15,3 +15,15 @@ it('should use the defined plan', function () {
     expect($middleware)
         ->toEqual('Maartenpaauw\Filament\Cashier\Stripe\RedirectIfUserNotSubscribed:basic');
 });
+
+it('should use the default plan when no plan provided', function () {
+    // Arrange
+    $billingProvider = new BillingProvider();
+
+    // Act
+    $middleware = $billingProvider->getSubscribedMiddleware();
+
+    // Assert
+    expect($middleware)
+        ->toEqual('Maartenpaauw\Filament\Cashier\Stripe\RedirectIfUserNotSubscribed:default');
+});
