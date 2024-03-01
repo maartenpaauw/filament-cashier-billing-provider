@@ -21,4 +21,3 @@ it('should use the default plan when no plan provided', function () {
     expect($middleware)
         ->toEqual('Maartenpaauw\Filament\Cashier\Stripe\RedirectIfUserNotSubscribed:default');
 });
-
