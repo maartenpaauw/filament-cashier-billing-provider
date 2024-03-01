@@ -16,7 +16,7 @@ use LogicException;
 final class BillingProvider implements Provider
 {
     public function __construct(
-        private readonly string $plan,
+        private readonly string $plan = 'default',
     ) {
     }
 

@@ -26,7 +26,7 @@ Add plans to your `cashier.php` config file:
 
 ```php
 'plans' => [
-    'basic' => [
+    'default' => [
         'price_id' => ENV('CASHIER_STRIPE_SUBSCRIPTION_BASIC_PRICE_ID'),
         'trial_days' => 14, // Optional
         'collect_tax_ids' => false, // Optional
@@ -48,7 +48,7 @@ public function panel(Panel $panel): Panel
 {
     return $panel
         // ...
-        ->tenantBillingProvider(new BillingProvider('basic'))
+        ->tenantBillingProvider(new BillingProvider('default'))
         ->requiresTenantSubscription()
         // ...
 }

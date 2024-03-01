@@ -28,7 +28,7 @@ final class RedirectIfUserNotSubscribed
      *
      * @throws Exception
      */
-    public function handle(Request $request, Closure $next, string $plan): Response
+    public function handle(Request $request, Closure $next, string $plan = 'default'): Response
     {
         /** @var Billable $tenant */
         $tenant = Filament::getTenant();
@@ -60,7 +60,7 @@ final class RedirectIfUserNotSubscribed
             ->redirect();
     }
 
-    public static function plan(string $plan): string
+    public static function plan(string $plan = 'default'): string
     {
         return sprintf('%s:%s', self::class, $plan);
     }
