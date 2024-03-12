@@ -2,6 +2,14 @@
 
 All notable changes to `filament-cashier-billing-provider` will be documented in this file.
 
+## v1.4.0 - 2024-03-12
+
+### What's Changed
+
+* Laravel 11 support by @maartenpaauw in https://github.com/maartenpaauw/filament-cashier-billing-provider/pull/8
+
+**Full Changelog**: https://github.com/maartenpaauw/filament-cashier-billing-provider/compare/1.3.0...1.4.0
+
 ## v1.3.0 - 2024-03-01
 
 ### What's Changed
