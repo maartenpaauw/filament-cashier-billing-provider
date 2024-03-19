@@ -4,7 +4,7 @@
 [![Tests](https://img.shields.io/github/actions/workflow/status/maartenpaauw/filament-cashier-billing-provider/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/maartenpaauw/filament-cashier-billing-provider/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/maartenpaauw/filament-cashier-billing-provider.svg?style=flat-square)](https://packagist.org/packages/maartenpaauw/filament-cashier-billing-provider)
 
-Add Laravel Cashier Stripe support to Filament multi tenant panels.
+Integrate Laravel Cashier Stripe support into Filament's multi-tenant panels.
 
 ## Support me
 
