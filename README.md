@@ -40,7 +40,7 @@ Add plans to your `cashier.php` config file:
 ],
 ```
 
-> **Warning**
+> [!CAUTION]
 > The current implementation only supports recurring subscriptions.
 
 Add the following code to your `AdminPanelProvider` (or other panel providers):
@@ -60,7 +60,7 @@ public function panel(Panel $panel): Panel
 }
 ```
 
-> **Note**
+> [!NOTE]
 > Requiring tenant subscription is optional. You can remove `->requiresTenantSubscription()` if you wish.
 
 ## Testing
