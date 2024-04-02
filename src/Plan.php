@@ -24,7 +24,7 @@ final class Plan
     {
         return $this->repository->get(
             "cashier.plans.$this->type.price_id",
-            static fn (): never => throw new InvalidArgumentException('Invalid plan configuration'),
+            static fn () => throw new InvalidArgumentException('Invalid plan configuration'),
         );
     }
 
