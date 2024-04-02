@@ -2,6 +2,15 @@
 
 All notable changes to `filament-cashier-billing-provider` will be documented in this file.
 
+## v1.5.0 - 2024-04-02
+
+### What's Changed
+
+* chore(deps): bump dependabot/fetch-metadata from 1.6.0 to 2.0.0 by @dependabot in https://github.com/maartenpaauw/filament-cashier-billing-provider/pull/9
+* Dynamic allow promotion codes based on configuration by @maartenpaauw in https://github.com/maartenpaauw/filament-cashier-billing-provider/pull/10
+
+**Full Changelog**: https://github.com/maartenpaauw/filament-cashier-billing-provider/compare/1.4.0...1.5.0
+
 ## v1.4.0 - 2024-03-12
 
 ### What's Changed
