@@ -14,6 +14,7 @@ use Laravel\Cashier\Billable;
 use Laravel\Cashier\Cashier;
 use Laravel\Cashier\SubscriptionBuilder;
 use LogicException;
+use Maartenpaauw\Filament\Cashier\Plan;
 use Symfony\Component\HttpFoundation\Response;
 
 final class RedirectIfUserNotSubscribed
@@ -41,18 +42,26 @@ final class RedirectIfUserNotSubscribed
             throw new LogicException('Customer model does not use Cashier Billable trait');
         }
 
-        if ($tenant->subscribed($plan)) {
+        $plan = new Plan($this->repository, $plan);
+
+        if ($tenant->subscribed($plan->type())) {
             return $next($request);
         }
 
-        $priceId = $this->repository->get("cashier.plans.$plan.price_id");
-        $trialDays = $this->repository->get("cashier.plans.$plan.trial_days", false);
-        $collectTaxIds = $this->repository->get("cashier.plans.$plan.collect_tax_ids", false);
-
-        return $tenant->newSubscription($plan, $priceId)
-            ->allowPromotionCodes()
-            ->when($trialDays, static fn (SubscriptionBuilder $subscription) => $subscription->trialDays($trialDays))
-            ->when($collectTaxIds, static fn (SubscriptionBuilder $subscription) => $subscription->collectTaxIds())
+        return $tenant
+            ->newSubscription($plan->type(), $plan->priceId())
+            ->when(
+                $plan->trialDays() !== false,
+                static fn (SubscriptionBuilder $subscription): SubscriptionBuilder => $subscription->trialDays($plan->trialDays()),
+            )
+            ->when(
+                $plan->allowPromotionCodes(),
+                static fn (SubscriptionBuilder $subscription): SubscriptionBuilder => $subscription->allowPromotionCodes(),
+            )
+            ->when(
+                $plan->collectTaxIds(),
+                static fn (SubscriptionBuilder $subscription): SubscriptionBuilder => $subscription->collectTaxIds(),
+            )
             ->checkout([
                 'success_url' => Dashboard::getUrl(),
                 'cancel_url' => Dashboard::getUrl(),
