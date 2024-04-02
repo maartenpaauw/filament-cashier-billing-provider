@@ -28,7 +28,7 @@ final class Plan
         );
     }
 
-    public function trialDays(): int | false
+    public function trialDays(): int|false
     {
         return $this->repository->get("cashier.plans.$this->type.trial_days", false);
     }
