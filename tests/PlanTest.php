@@ -23,7 +23,7 @@ beforeEach(function () {
     ];
 });
 
-test('it resolves all values from configuration', function () {
+it('it resolves all values from configuration', function () {
     expect(new Plan(new Repository($this->config), 'default'))
         ->type()
         ->toEqual('default')
@@ -37,7 +37,7 @@ test('it resolves all values from configuration', function () {
         ->toBeTrue();
 });
 
-test('it resolves all required values from configuration', function () {
+it('it resolves all required values from configuration', function () {
     expect(new Plan(new Repository($this->config), 'basic'))
         ->type()
         ->toEqual('basic')
