@@ -2,6 +2,10 @@
 
 All notable changes to `filament-cashier-billing-provider` will be documented in this file.
 
+## v1.5.1 - 2024-04-02
+
+**Full Changelog**: https://github.com/maartenpaauw/filament-cashier-billing-provider/compare/1.5.0...1.5.1
+
 ## v1.5.0 - 2024-04-02
 
 ### What's Changed
