@@ -37,6 +37,7 @@ Add plans to your `cashier.php` config file:
         'trial_days' => 14, // Optional
         'allow_promotion_codes' => true, // Optional
         'collect_tax_ids' => true, // Optional
+        'metered_price' => true, // Optional
     ],
 ],
 ```
