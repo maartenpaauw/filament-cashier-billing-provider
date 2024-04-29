@@ -2,6 +2,15 @@
 
 All notable changes to `filament-cashier-billing-provider` will be documented in this file.
 
+## v1.6.0 - 2024-04-29
+
+### What's Changed
+
+* chore(deps): bump aglipanci/laravel-pint-action from 2.3.1 to 2.4 by @dependabot in https://github.com/maartenpaauw/filament-cashier-billing-provider/pull/12
+* Add support for metered price by @maartenpaauw in https://github.com/maartenpaauw/filament-cashier-billing-provider/pull/13
+
+**Full Changelog**: https://github.com/maartenpaauw/filament-cashier-billing-provider/compare/1.5.1...1.6.0
+
 ## v1.5.1 - 2024-04-02
 
 **Full Changelog**: https://github.com/maartenpaauw/filament-cashier-billing-provider/compare/1.5.0...1.5.1
