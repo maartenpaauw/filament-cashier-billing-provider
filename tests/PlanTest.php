@@ -14,6 +14,7 @@ beforeEach(function () {
                     'trial_days' => 14,
                     'allow_promotion_codes' => true,
                     'collect_tax_ids' => true,
+                    'metered_price' => true,
                 ],
                 'basic' => [
                     'price_id' => 'price_ruVAAh5dwyhwbtWIVQn0lUvc',
@@ -34,6 +35,8 @@ it('it resolves all values from configuration', function () {
         ->allowPromotionCodes()
         ->toBeTrue()
         ->collectTaxIds()
+        ->toBeTrue()
+        ->isMeteredPrice()
         ->toBeTrue();
 });
 
@@ -48,6 +51,8 @@ it('it resolves all required values from configuration', function () {
         ->allowPromotionCodes()
         ->toBeFalse()
         ->collectTaxIds()
+        ->toBeFalse()
+        ->isMeteredPrice()
         ->toBeFalse();
 });
 

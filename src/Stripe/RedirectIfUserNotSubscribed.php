@@ -49,7 +49,11 @@ final class RedirectIfUserNotSubscribed
         }
 
         return $tenant
-            ->newSubscription($plan->type(), $plan->priceId())
+            ->newSubscription($plan->type(), $plan->isMeteredPrice() ? [] : $plan->priceId())
+            ->when(
+                $plan->isMeteredPrice(),
+                static fn (SubscriptionBuilder $subscription): SubscriptionBuilder => $subscription->meteredPrice($plan->priceId()),
+            )
             ->when(
                 $plan->trialDays() !== false,
                 static fn (SubscriptionBuilder $subscription): SubscriptionBuilder => $subscription->trialDays($plan->trialDays()),

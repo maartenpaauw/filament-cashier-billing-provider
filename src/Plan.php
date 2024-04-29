@@ -42,4 +42,9 @@ final class Plan
     {
         return $this->repository->get("cashier.plans.$this->type.collect_tax_ids", false);
     }
+
+    public function isMeteredPrice(): bool
+    {
+        return $this->repository->get("cashier.plans.$this->type.metered_price", false);
+    }
 }
