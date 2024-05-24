@@ -6,15 +6,12 @@ namespace Maartenpaauw\Filament\Cashier\Stripe;
 
 use Closure;
 use Exception;
-use Filament\Facades\Filament;
 use Filament\Pages\Dashboard;
 use Illuminate\Config\Repository;
 use Illuminate\Http\Request;
-use Laravel\Cashier\Billable;
-use Laravel\Cashier\Cashier;
 use Laravel\Cashier\SubscriptionBuilder;
-use LogicException;
 use Maartenpaauw\Filament\Cashier\Plan;
+use Maartenpaauw\Filament\Cashier\TenantRepository;
 use Symfony\Component\HttpFoundation\Response;
 
 final class RedirectIfUserNotSubscribed
@@ -31,17 +28,7 @@ final class RedirectIfUserNotSubscribed
      */
     public function handle(Request $request, Closure $next, string $plan = 'default'): Response
     {
-        /** @var Billable $tenant */
-        $tenant = Filament::getTenant();
-
-        if ($tenant::class !== Cashier::$customerModel) {
-            throw new LogicException('Filament tenant does not match the Cashier customer model');
-        }
-
-        if (! in_array(Billable::class, class_uses_recursive($tenant), true)) {
-            throw new LogicException('Tenant model does not use Cashier Billable trait');
-        }
-
+        $tenant = TenantRepository::make()->current();
         $plan = new Plan($this->repository, $plan);
 
         if ($tenant->subscribed($plan->type())) {
