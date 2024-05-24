@@ -31,7 +31,7 @@ final class BillingProvider implements Provider
             }
 
             if (! in_array(Billable::class, class_uses_recursive($tenant), true)) {
-                throw new LogicException('Customer model does not use Cashier Billable trait');
+                throw new LogicException('Tenant model does not use Cashier Billable trait');
             }
 
             if (! $tenant->hasStripeId()) {
