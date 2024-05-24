@@ -9,14 +9,14 @@ Integrate Laravel Cashier Stripe support into Filament's multi-tenant panels.
 ## Support me
 
 <p class="filament-hidden">
-    <a href="https://filamentphp.com/plugins/maartenpaauw-pennant">
-        <img src="https://raw.githubusercontent.com/maartenpaauw/pennant-for-filament-docs/main/assets/screenshots/banner.jpg"
-            alt="Pennant for Filament"
+    <a href="https://filamentphp.com/plugins/maartenpaauw-model-states">
+        <img src="https://raw.githubusercontent.com/maartenpaauw/model-states-for-filament-docs/main/assets/images/model-states-for-filament-banner.jpg"
+            alt="Model States for Filament"
             width="700px" />
     </a>
 </p>
 
-You can support me by [buying Pennant feature flags for Filament](https://filamentphp.com/plugins/maartenpaauw-pennant).
+You can support me by [buying Model States for Filament](https://filamentphp.com/plugins/maartenpaauw-model-states).
 
 ## Installation
 
