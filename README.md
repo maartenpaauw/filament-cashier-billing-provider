@@ -20,11 +20,17 @@ You can support me by [buying Pennant feature flags for Filament](https://filame
 
 ## Installation
 
-You can install the package via composer:
+1. Install the package via composer:
 
-```bash
-composer require maartenpaauw/filament-cashier-billing-provider
-```
+    ```bash
+    composer require maartenpaauw/filament-cashier-billing-provider
+    ```
+
+2. Make sure your `Billable` model is the same as your Filament tenant model.
+
+> [!TIP]
+> For more information configuring a `Billable` model, refer to the official
+> Laravel [documentation](https://laravel.com/docs/11.x/billing#billable-model).
 
 ## Usage
 
