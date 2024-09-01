@@ -2,6 +2,16 @@
 
 All notable changes to `filament-cashier-billing-provider` will be documented in this file.
 
+## v1.6.1 - 2024-09-01
+
+### What's Changed
+
+* Introduce tenant repository to reduce duplicate code.
+* chore(deps): bump dependabot/fetch-metadata from 2.0.0 to 2.1.0 by @dependabot in https://github.com/maartenpaauw/filament-cashier-billing-provider/pull/14
+* chore(deps): bump dependabot/fetch-metadata from 2.1.0 to 2.2.0 by @dependabot in https://github.com/maartenpaauw/filament-cashier-billing-provider/pull/21
+
+**Full Changelog**: https://github.com/maartenpaauw/filament-cashier-billing-provider/compare/1.6.0...1.6.1
+
 ## v1.6.0 - 2024-04-29
 
 ### What's Changed
