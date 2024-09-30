@@ -11,7 +11,7 @@ it('should use the defined plan', function () {
 });
 
 it('should use the default plan when no plan provided', function () {
-    expect(new BillingProvider())
+    expect(new BillingProvider)
         ->getSubscribedMiddleware()
         ->toEqual('Maartenpaauw\Filament\Cashier\Stripe\RedirectIfUserNotSubscribed:default');
 });

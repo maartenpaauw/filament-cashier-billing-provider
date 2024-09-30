@@ -12,8 +12,7 @@ final class Plan
     public function __construct(
         private readonly Repository $repository,
         private readonly string $plan = 'default',
-    ) {
-    }
+    ) {}
 
     public function type(): string
     {

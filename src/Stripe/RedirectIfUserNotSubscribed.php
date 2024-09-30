@@ -18,8 +18,7 @@ final class RedirectIfUserNotSubscribed
 {
     public function __construct(
         private readonly Repository $repository,
-    ) {
-    }
+    ) {}
 
     /**
      * @param  Closure(Request): (Response)  $next

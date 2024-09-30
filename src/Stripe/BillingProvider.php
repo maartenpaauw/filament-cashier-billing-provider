@@ -14,8 +14,7 @@ final class BillingProvider implements Provider
 {
     public function __construct(
         private readonly string $plan = 'default',
-    ) {
-    }
+    ) {}
 
     public function getRouteAction(): string|Closure|array
     {
