@@ -37,7 +37,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Maartenpaauw\\Filament\\Cashier\\Tests\\": "tests"
+            "Maartenpaauw\\Filament\\Cashier\\Tests\\": "tests",
+            "Workbench\\App\\": "workbench/app/"
         }
     },
     "scripts": {

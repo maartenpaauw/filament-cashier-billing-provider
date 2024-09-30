@@ -10,6 +10,7 @@
 /tests export-ignore
 /.editorconfig export-ignore
 /.php-cs-fixer.dist.php export-ignore
+/workbench export-ignore
 /art export-ignore
 /docs export-ignore
 /UPGRADING.md export-ignore

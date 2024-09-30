@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Maartenpaauw\Filament\Cashier\Stripe;
 
+use BackedEnum;
 use Closure;
 use Filament\Billing\Providers\Contracts\Provider;
 use Filament\Pages\Dashboard;
@@ -13,7 +14,7 @@ use Maartenpaauw\Filament\Cashier\TenantRepository;
 final class BillingProvider implements Provider
 {
     public function __construct(
-        private readonly string $plan = 'default',
+        private readonly string|BackedEnum $plan = 'default',
     ) {}
 
     public function getRouteAction(): string|Closure|array

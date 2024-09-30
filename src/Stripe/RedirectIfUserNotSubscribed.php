@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Maartenpaauw\Filament\Cashier\Stripe;
 
+use BackedEnum;
 use Closure;
 use Exception;
 use Filament\Pages\Dashboard;
@@ -59,8 +60,11 @@ final class RedirectIfUserNotSubscribed
             ->redirect();
     }
 
-    public static function plan(string $plan = 'default'): string
+    public static function plan(string|BackedEnum $plan = 'default'): string
     {
-        return sprintf('%s:%s', self::class, $plan);
+        return sprintf('%s:%s', self::class, match (true) {
+            $plan instanceof BackedEnum => strval($plan->value),
+            default => $plan,
+        });
     }
 }
