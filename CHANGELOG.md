@@ -2,6 +2,12 @@
 
 All notable changes to `filament-cashier-billing-provider` will be documented in this file.
 
+## v1.7.0 - 2024-09-30
+
+### What's Changed
+
+* Add support for configurable type.
+
 ## v1.6.1 - 2024-09-01
 
 ### What's Changed
