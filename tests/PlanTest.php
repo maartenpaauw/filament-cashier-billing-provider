@@ -11,6 +11,7 @@ beforeEach(function () {
             'plans' => [
                 'default' => [
                     'price_id' => 'price_Fxp5y8x0qjrm2jjk2nzuMpSF',
+                    'type' => 'primary',
                     'trial_days' => 14,
                     'allow_promotion_codes' => true,
                     'collect_tax_ids' => true,
@@ -27,7 +28,7 @@ beforeEach(function () {
 it('it resolves all values from configuration', function () {
     expect(new Plan(new Repository($this->config), 'default'))
         ->type()
-        ->toEqual('default')
+        ->toEqual('primary')
         ->priceId()
         ->toEqual('price_Fxp5y8x0qjrm2jjk2nzuMpSF')
         ->trialDays()

@@ -40,6 +40,7 @@ Add plans to your `cashier.php` config file:
 'plans' => [
     'default' => [
         'price_id' => ENV('CASHIER_STRIPE_SUBSCRIPTION_DEFAULT_PRICE_ID'),
+        'type' => 'default', // Optional, by default it uses the array key as type...
         'trial_days' => 14, // Optional
         'allow_promotion_codes' => true, // Optional
         'collect_tax_ids' => true, // Optional
