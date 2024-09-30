@@ -2,6 +2,12 @@
 
 All notable changes to `filament-cashier-billing-provider` will be documented in this file.
 
+## v1.8.0 - 2024-09-30
+
+### What's Changed
+
+* Add support for backed enum plans.
+
 ## v1.7.0 - 2024-09-30
 
 ### What's Changed
