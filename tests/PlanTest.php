@@ -12,6 +12,7 @@ beforeEach(function () {
                 'default' => [
                     'price_id' => 'price_Fxp5y8x0qjrm2jjk2nzuMpSF',
                     'type' => 'primary',
+                    'has_generic_trial' => true,
                     'trial_days' => 14,
                     'allow_promotion_codes' => true,
                     'collect_tax_ids' => true,
@@ -33,6 +34,8 @@ it('it resolves all values from configuration', function () {
         ->toEqual('price_Fxp5y8x0qjrm2jjk2nzuMpSF')
         ->trialDays()
         ->toEqual(14)
+        ->hasGenericTrial()
+        ->toBeTrue()
         ->allowPromotionCodes()
         ->toBeTrue()
         ->collectTaxIds()
@@ -48,6 +51,8 @@ it('it resolves all required values from configuration', function () {
         ->priceId()
         ->toEqual('price_ruVAAh5dwyhwbtWIVQn0lUvc')
         ->trialDays()
+        ->toBeFalse()
+        ->hasGenericTrial()
         ->toBeFalse()
         ->allowPromotionCodes()
         ->toBeFalse()

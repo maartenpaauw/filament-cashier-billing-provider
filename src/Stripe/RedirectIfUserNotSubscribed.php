@@ -31,6 +31,10 @@ final class RedirectIfUserNotSubscribed
         $tenant = TenantRepository::make()->current();
         $plan = new Plan($this->repository, $plan);
 
+        if ($plan->hasGenericTrial() && $tenant->onGenericTrial()) {
+            return $next($request);
+        }
+
         if ($tenant->subscribed($plan->type())) {
             return $next($request);
         }
@@ -42,7 +46,7 @@ final class RedirectIfUserNotSubscribed
                 static fn (SubscriptionBuilder $subscription): SubscriptionBuilder => $subscription->meteredPrice($plan->priceId()),
             )
             ->when(
-                $plan->trialDays() !== false,
+                ! $plan->hasGenericTrial() && $plan->trialDays() !== false,
                 static fn (SubscriptionBuilder $subscription): SubscriptionBuilder => $subscription->trialDays($plan->trialDays()),
             )
             ->when(
