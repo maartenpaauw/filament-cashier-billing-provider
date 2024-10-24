@@ -2,6 +2,15 @@
 
 All notable changes to `filament-cashier-billing-provider` will be documented in this file.
 
+## v2.0.0 - 2024-10-24
+
+### What's Changed
+
+* feat: update middleware to check subscription using product ID by @maartenpaauw in https://github.com/maartenpaauw/filament-cashier-billing-provider/pull/25
+
+**Full Changelog**: https://github.com/maartenpaauw/filament-cashier-billing-provider/compare/1.9.0...2.0.0
+**Upgrading**: https://github.com/maartenpaauw/filament-cashier-billing-provider/blob/main/UPGRADING.md
+
 ## v1.9.0 - 2024-10-24
 
 ### What's Changed
