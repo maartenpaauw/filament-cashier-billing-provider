@@ -32,6 +32,11 @@ final class Plan
         return $this->repository->get("cashier.plans.$this->plan.trial_days", false);
     }
 
+    public function hasGenericTrial(): bool
+    {
+        return $this->repository->get("cashier.plans.$this->plan.has_generic_trial", false);
+    }
+
     public function allowPromotionCodes(): bool
     {
         return $this->repository->get("cashier.plans.$this->plan.allow_promotion_codes", false);
