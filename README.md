@@ -39,6 +39,7 @@ Add plans to your `cashier.php` config file:
 ```php
 'plans' => [
     'default' => [
+        'product_id' => ENV('CASHIER_STRIPE_SUBSCRIPTION_DEFAULT_PRODUCT_ID'),
         'price_id' => ENV('CASHIER_STRIPE_SUBSCRIPTION_DEFAULT_PRICE_ID'),
         'type' => 'default', // Optional, by default it uses the array key as type.
         'trial_days' => 14, // Optional
@@ -82,6 +83,10 @@ composer test
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
+## Upgrading
+
+Please see [UPGRADING](UPGRADING.md) for more details.
 
 ## Contributing
 

@@ -35,7 +35,7 @@ final class RedirectIfUserNotSubscribed
             return $next($request);
         }
 
-        if ($tenant->subscribed($plan->type())) {
+        if ($tenant->subscribedToProduct($plan->productId(), $plan->type())) {
             return $next($request);
         }
 
