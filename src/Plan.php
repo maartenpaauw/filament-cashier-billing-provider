@@ -19,6 +19,14 @@ final class Plan
         return $this->repository->get("cashier.plans.$this->plan.type", $this->plan);
     }
 
+    public function productId(): string
+    {
+        return $this->repository->get(
+            "cashier.plans.$this->plan.product_id",
+            static fn () => throw new InvalidArgumentException('Invalid plan configuration'),
+        );
+    }
+
     public function priceId(): string
     {
         return $this->repository->get(
