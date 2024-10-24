@@ -2,6 +2,14 @@
 
 All notable changes to `filament-cashier-billing-provider` will be documented in this file.
 
+## v1.9.0 - 2024-10-24
+
+### What's Changed
+
+* feat: add support for generic trial days by @maartenpaauw in https://github.com/maartenpaauw/filament-cashier-billing-provider/pull/24
+
+**Full Changelog**: https://github.com/maartenpaauw/filament-cashier-billing-provider/compare/1.8.0...1.9.0
+
 ## v1.8.0 - 2024-09-30
 
 ### What's Changed
