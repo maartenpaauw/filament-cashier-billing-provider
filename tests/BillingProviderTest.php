@@ -26,3 +26,15 @@ it('should use the value from string backed enums as plan name', function (Backe
     [Plan::Advanced, 'Maartenpaauw\Filament\Cashier\Stripe\RedirectIfUserNotSubscribed:advanced'],
     [Plan::Premium, 'Maartenpaauw\Filament\Cashier\Stripe\RedirectIfUserNotSubscribed:premium'],
 ]);
+
+it('should use the defined string plans', function (): void {
+    expect(new BillingProvider('basic,advanced,premium'))
+        ->getSubscribedMiddleware()
+        ->toEqual('Maartenpaauw\Filament\Cashier\Stripe\RedirectIfUserNotSubscribed:basic,advanced,premium');
+});
+
+it('should use the defined enum plans', function (): void {
+    expect(new BillingProvider(Plan::cases()))
+        ->getSubscribedMiddleware()
+        ->toEqual('Maartenpaauw\Filament\Cashier\Stripe\RedirectIfUserNotSubscribed:basic,advanced,premium');
+});

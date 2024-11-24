@@ -13,8 +13,11 @@ use Maartenpaauw\Filament\Cashier\TenantRepository;
 
 final class BillingProvider implements Provider
 {
+    /**
+     * @param  string|BackedEnum|array<array-key, string|BackedEnum>  $plans
+     */
     public function __construct(
-        private readonly string|BackedEnum $plan = 'default',
+        private readonly string|BackedEnum|array $plans = 'default',
     ) {}
 
     public function getRouteAction(): string|Closure|array
@@ -32,6 +35,6 @@ final class BillingProvider implements Provider
 
     public function getSubscribedMiddleware(): string
     {
-        return RedirectIfUserNotSubscribed::plan($this->plan);
+        return RedirectIfUserNotSubscribed::plan($this->plans);
     }
 }

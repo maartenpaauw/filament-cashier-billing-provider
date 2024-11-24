@@ -10,6 +10,8 @@ use Exception;
 use Filament\Pages\Dashboard;
 use Illuminate\Config\Repository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Laravel\Cashier\SubscriptionBuilder;
 use Maartenpaauw\Filament\Cashier\Plan;
 use Maartenpaauw\Filament\Cashier\TenantRepository;
@@ -26,18 +28,25 @@ final class RedirectIfUserNotSubscribed
      *
      * @throws Exception
      */
-    public function handle(Request $request, Closure $next, string $plan = 'default'): Response
+    public function handle(Request $request, Closure $next, string ...$plans): Response
     {
         $tenant = TenantRepository::make()->current();
-        $plan = new Plan($this->repository, $plan);
 
-        if ($plan->hasGenericTrial() && $tenant->onGenericTrial()) {
-            return $next($request);
+        /** @var array<array-key, Plan> $instances */
+        $instances = Arr::map($plans, fn (string $plan): Plan => new Plan($this->repository, $plan));
+
+        foreach ($instances as $plan) {
+            if ($plan->hasGenericTrial() && $tenant->onGenericTrial()) {
+                return $next($request);
+            }
+
+            if ($tenant->subscribedToProduct($plan->productId(), $plan->type())) {
+                return $next($request);
+            }
         }
 
-        if ($tenant->subscribedToProduct($plan->productId(), $plan->type())) {
-            return $next($request);
-        }
+        /** @var Plan $plan */
+        $plan = Arr::first($instances);
 
         return $tenant
             ->newSubscription($plan->type(), $plan->isMeteredPrice() ? [] : $plan->priceId())
@@ -64,11 +73,20 @@ final class RedirectIfUserNotSubscribed
             ->redirect();
     }
 
-    public static function plan(string|BackedEnum $plan = 'default'): string
+    /**
+     * @param  string|BackedEnum|array<array-key, string|BackedEnum>  $plans
+     */
+    public static function plan(string|BackedEnum|array $plans = 'default'): string
     {
-        return sprintf('%s:%s', self::class, match (true) {
-            $plan instanceof BackedEnum => strval($plan->value),
-            default => $plan,
-        });
+        return sprintf(
+            '%s:%s',
+            self::class,
+            Collection::wrap($plans)
+                ->map(static fn (string|BackedEnum $plan): string => match (true) {
+                    $plan instanceof BackedEnum => strval($plan->value),
+                    default => $plan,
+                })
+                ->join(','),
+        );
     }
 }
