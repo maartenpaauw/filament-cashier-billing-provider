@@ -2,6 +2,14 @@
 
 All notable changes to `filament-cashier-billing-provider` will be documented in this file.
 
+## v2.1.0 - 2024-11-24
+
+### What's Changed
+
+* Added support for multiple plans.
+
+**Full Changelog**: https://github.com/maartenpaauw/filament-cashier-billing-provider/compare/2.0.0...2.1.0
+
 ## v2.0.0 - 2024-10-24
 
 ### What's Changed
