@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Illuminate\Config\Repository;
 use Maartenpaauw\Filament\Cashier\Plan;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->config = [
         'cashier' => [
             'plans' => [
@@ -28,7 +28,7 @@ beforeEach(function () {
     ];
 });
 
-it('it resolves all values from configuration', function () {
+it('it resolves all values from configuration', function (): void {
     expect(new Plan(new Repository($this->config), 'default'))
         ->type()
         ->toEqual('primary')
@@ -48,7 +48,7 @@ it('it resolves all values from configuration', function () {
         ->toBeTrue();
 });
 
-it('it resolves all required values from configuration', function () {
+it('it resolves all required values from configuration', function (): void {
     expect(new Plan(new Repository($this->config), 'basic'))
         ->type()
         ->toEqual('basic')
@@ -68,10 +68,10 @@ it('it resolves all required values from configuration', function () {
         ->toBeFalse();
 });
 
-it('throws an exception when the plan price could not be parsed from configuration', function () {
+it('throws an exception when the plan price could not be parsed from configuration', function (): void {
     expect(new Plan(new Repository($this->config), 'premium'))->priceId();
 })->throws(InvalidArgumentException::class, 'Invalid plan configuration');
 
-it('throws an exception when the plan product could not be parsed from configuration', function () {
+it('throws an exception when the plan product could not be parsed from configuration', function (): void {
     expect(new Plan(new Repository($this->config), 'premium'))->productId();
 })->throws(InvalidArgumentException::class, 'Invalid plan configuration');

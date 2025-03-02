@@ -17,10 +17,10 @@ use Maartenpaauw\Filament\Cashier\Plan;
 use Maartenpaauw\Filament\Cashier\TenantRepository;
 use Symfony\Component\HttpFoundation\Response;
 
-final class RedirectIfUserNotSubscribed
+final readonly class RedirectIfUserNotSubscribed
 {
     public function __construct(
-        private readonly Repository $repository,
+        private Repository $repository,
     ) {}
 
     /**
