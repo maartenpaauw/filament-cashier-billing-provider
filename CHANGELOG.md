@@ -2,6 +2,16 @@
 
 All notable changes to `filament-cashier-billing-provider` will be documented in this file.
 
+## v2.2.0 - 2025-03-02
+
+### What's Changed
+
+* chore(deps): bump dependabot/fetch-metadata from 2.2.0 to 2.3.0 by @dependabot in https://github.com/maartenpaauw/filament-cashier-billing-provider/pull/29
+* chore(deps): bump aglipanci/laravel-pint-action from 2.4 to 2.5 by @dependabot in https://github.com/maartenpaauw/filament-cashier-billing-provider/pull/31
+* Laravel 12 support by @maartenpaauw in https://github.com/maartenpaauw/filament-cashier-billing-provider/pull/32
+
+**Full Changelog**: https://github.com/maartenpaauw/filament-cashier-billing-provider/compare/2.1.0...2.2.0
+
 ## v2.1.0 - 2024-11-24
 
 ### What's Changed
