@@ -11,13 +11,13 @@ use Filament\Pages\Dashboard;
 use Illuminate\Http\RedirectResponse;
 use Maartenpaauw\Filament\Cashier\TenantRepository;
 
-final class BillingProvider implements Provider
+final readonly class BillingProvider implements Provider
 {
     /**
      * @param  string|BackedEnum|array<array-key, string|BackedEnum>  $plans
      */
     public function __construct(
-        private readonly string|BackedEnum|array $plans = 'default',
+        private string|BackedEnum|array $plans = 'default',
     ) {}
 
     public function getRouteAction(): string|Closure|array
