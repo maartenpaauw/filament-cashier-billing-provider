@@ -6,13 +6,13 @@ namespace Maartenpaauw\Filament\Cashier\Stripe;
 
 use BackedEnum;
 use Closure;
-use Filament\Billing\Providers\Contracts\Provider;
+use Filament\Billing\Providers\Contracts\BillingProvider as BillingProviderContract;
 use Filament\Pages\Dashboard;
 use Illuminate\Http\RedirectResponse;
 use Maartenpaauw\Filament\Cashier\TenantRepository;
 use Override;
 
-final readonly class BillingProvider implements Provider
+final readonly class BillingProvider implements BillingProviderContract
 {
     /**
      * @param  string|BackedEnum|array<array-key, string|BackedEnum>  $plans
