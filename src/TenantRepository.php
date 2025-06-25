@@ -25,11 +25,11 @@ final class TenantRepository
         $tenant = Filament::getTenant();
 
         if ($tenant::class !== Cashier::$customerModel) {
-            throw new LogicException('Filament tenant does not match the Cashier customer model');
+            throw new LogicException(message: 'Filament tenant does not match the Cashier customer model');
         }
 
-        if (! in_array(Billable::class, class_uses_recursive($tenant), true)) {
-            throw new LogicException('Tenant model does not use Cashier Billable trait');
+        if (! in_array(needle: Billable::class, haystack: class_uses_recursive($tenant), strict: true)) {
+            throw new LogicException(message: 'Tenant model does not use Cashier Billable trait');
         }
 
         return $tenant;

@@ -33,40 +33,43 @@ final readonly class RedirectIfUserNotSubscribed
         $tenant = TenantRepository::make()->current();
 
         /** @var array<array-key, Plan> $instances */
-        $instances = Arr::map($plans, fn (string $plan): Plan => new Plan($this->repository, $plan));
+        $instances = Arr::map(
+            array: $plans,
+            callback: fn (string $plan): Plan => new Plan(repository: $this->repository, plan: $plan),
+        );
 
         foreach ($instances as $plan) {
-            if ($plan->hasGenericTrial() && $tenant->onGenericTrial()) {
+            if ($plan->hasGenericTrial() === true && $tenant->onGenericTrial() === true) {
                 return $next($request);
             }
 
-            if ($tenant->subscribedToProduct($plan->productId(), $plan->type())) {
+            if ($tenant->subscribedToProduct(products: $plan->productId(), type: $plan->type()) === true) {
                 return $next($request);
             }
         }
 
         /** @var Plan $plan */
-        $plan = Arr::first($instances);
+        $plan = Arr::first(array: $instances);
 
         return $tenant
-            ->newSubscription($plan->type(), $plan->isMeteredPrice() ? [] : $plan->priceId())
+            ->newSubscription(type: $plan->type(), prices: $plan->isMeteredPrice() ? [] : $plan->priceId())
             ->when(
-                $plan->isMeteredPrice(),
-                static fn (SubscriptionBuilder $subscription): SubscriptionBuilder => $subscription->meteredPrice($plan->priceId()),
+                value: $plan->isMeteredPrice() === true,
+                callback: static fn (SubscriptionBuilder $subscription): SubscriptionBuilder => $subscription->meteredPrice(price: $plan->priceId()),
             )
             ->when(
-                ! $plan->hasGenericTrial() && $plan->trialDays() !== false,
-                static fn (SubscriptionBuilder $subscription): SubscriptionBuilder => $subscription->trialDays($plan->trialDays()),
+                value: $plan->hasGenericTrial() === false && $plan->trialDays() !== false,
+                callback: static fn (SubscriptionBuilder $subscription): SubscriptionBuilder => $subscription->trialDays(trialDays: $plan->trialDays()),
             )
             ->when(
-                $plan->allowPromotionCodes(),
-                static fn (SubscriptionBuilder $subscription): SubscriptionBuilder => $subscription->allowPromotionCodes(),
+                value: $plan->allowPromotionCodes() === true,
+                callback: static fn (SubscriptionBuilder $subscription): SubscriptionBuilder => $subscription->allowPromotionCodes(),
             )
             ->when(
-                $plan->collectTaxIds(),
-                static fn (SubscriptionBuilder $subscription): SubscriptionBuilder => $subscription->collectTaxIds(),
+                value: $plan->collectTaxIds() === true,
+                callback: static fn (SubscriptionBuilder $subscription): SubscriptionBuilder => $subscription->collectTaxIds(),
             )
-            ->checkout([
+            ->checkout(sessionOptions: [
                 'success_url' => Dashboard::getUrl(),
                 'cancel_url' => Dashboard::getUrl(),
             ])
@@ -81,12 +84,12 @@ final readonly class RedirectIfUserNotSubscribed
         return sprintf(
             '%s:%s',
             self::class,
-            Collection::wrap($plans)
-                ->map(static fn (string|BackedEnum $plan): string => match (true) {
-                    $plan instanceof BackedEnum => strval($plan->value),
+            Collection::wrap(value: $plans)
+                ->map(callback: static fn (string|BackedEnum $plan): string => match (true) {
+                    $plan instanceof BackedEnum => strval(value: $plan->value),
                     default => $plan,
                 })
-                ->join(','),
+                ->join(glue: ','),
         );
     }
 }

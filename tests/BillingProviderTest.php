@@ -5,36 +5,36 @@ declare(strict_types=1);
 use Maartenpaauw\Filament\Cashier\Stripe\BillingProvider;
 use Workbench\App\enums\Plan;
 
-it('should use the defined plan', function (): void {
-    expect(new BillingProvider('basic'))
+it(description: 'should use the defined plan', closure: function (): void {
+    expect(value: new BillingProvider(plans: 'basic'))
         ->getSubscribedMiddleware()
-        ->toEqual('Maartenpaauw\Filament\Cashier\Stripe\RedirectIfUserNotSubscribed:basic');
+        ->toEqual(expected: 'Maartenpaauw\Filament\Cashier\Stripe\RedirectIfUserNotSubscribed:basic');
 });
 
-it('should use the default plan when no plan provided', function (): void {
-    expect(new BillingProvider)
+it(description: 'should use the default plan when no plan provided', closure: function (): void {
+    expect(value: new BillingProvider)
         ->getSubscribedMiddleware()
-        ->toEqual('Maartenpaauw\Filament\Cashier\Stripe\RedirectIfUserNotSubscribed:default');
+        ->toEqual(expected: 'Maartenpaauw\Filament\Cashier\Stripe\RedirectIfUserNotSubscribed:default');
 });
 
-it('should use the value from string backed enums as plan name', function (BackedEnum $plan, string $expectedMiddleware): void {
-    expect(new BillingProvider($plan))
+it(description: 'should use the value from string backed enums as plan name', closure: function (BackedEnum $plan, string $expectedMiddleware): void {
+    expect(value: new BillingProvider(plans: $plan))
         ->getSubscribedMiddleware()
-        ->toEqual($expectedMiddleware);
+        ->toEqual(expected: $expectedMiddleware);
 })->with([
     [Plan::Basic, 'Maartenpaauw\Filament\Cashier\Stripe\RedirectIfUserNotSubscribed:basic'],
     [Plan::Advanced, 'Maartenpaauw\Filament\Cashier\Stripe\RedirectIfUserNotSubscribed:advanced'],
     [Plan::Premium, 'Maartenpaauw\Filament\Cashier\Stripe\RedirectIfUserNotSubscribed:premium'],
 ]);
 
-it('should use the defined string plans', function (): void {
-    expect(new BillingProvider('basic,advanced,premium'))
+it(description: 'should use the defined string plans', closure: function (): void {
+    expect(value: new BillingProvider(plans: 'basic,advanced,premium'))
         ->getSubscribedMiddleware()
-        ->toEqual('Maartenpaauw\Filament\Cashier\Stripe\RedirectIfUserNotSubscribed:basic,advanced,premium');
+        ->toEqual(expected: 'Maartenpaauw\Filament\Cashier\Stripe\RedirectIfUserNotSubscribed:basic,advanced,premium');
 });
 
-it('should use the defined enum plans', function (): void {
-    expect(new BillingProvider(Plan::cases()))
+it(description: 'should use the defined enum plans', closure: function (): void {
+    expect(value: new BillingProvider(plans: Plan::cases()))
         ->getSubscribedMiddleware()
-        ->toEqual('Maartenpaauw\Filament\Cashier\Stripe\RedirectIfUserNotSubscribed:basic,advanced,premium');
+        ->toEqual(expected: 'Maartenpaauw\Filament\Cashier\Stripe\RedirectIfUserNotSubscribed:basic,advanced,premium');
 });

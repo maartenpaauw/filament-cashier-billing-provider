@@ -10,6 +10,7 @@ use Filament\Billing\Providers\Contracts\Provider;
 use Filament\Pages\Dashboard;
 use Illuminate\Http\RedirectResponse;
 use Maartenpaauw\Filament\Cashier\TenantRepository;
+use Override;
 
 final readonly class BillingProvider implements Provider
 {
@@ -20,21 +21,23 @@ final readonly class BillingProvider implements Provider
         private string|BackedEnum|array $plans = 'default',
     ) {}
 
+    #[Override]
     public function getRouteAction(): string|Closure|array
     {
         return static function (): RedirectResponse {
             $tenant = TenantRepository::make()->current();
 
-            if (! $tenant->hasStripeId()) {
+            if ($tenant->hasStripeId() === false) {
                 $tenant->createAsStripeCustomer();
             }
 
-            return $tenant->redirectToBillingPortal(Dashboard::getUrl());
+            return $tenant->redirectToBillingPortal(returnUrl: Dashboard::getUrl());
         };
     }
 
+    #[Override]
     public function getSubscribedMiddleware(): string
     {
-        return RedirectIfUserNotSubscribed::plan($this->plans);
+        return RedirectIfUserNotSubscribed::plan(plans: $this->plans);
     }
 }

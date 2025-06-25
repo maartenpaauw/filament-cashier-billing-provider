@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Illuminate\Config\Repository;
 use Maartenpaauw\Filament\Cashier\Plan;
 
-beforeEach(function (): void {
+beforeEach(closure: function (): void {
     $this->config = [
         'cashier' => [
             'plans' => [
@@ -28,16 +28,16 @@ beforeEach(function (): void {
     ];
 });
 
-it('it resolves all values from configuration', function (): void {
-    expect(new Plan(new Repository($this->config), 'default'))
+it(description: 'it resolves all values from configuration', closure: function (): void {
+    expect(value: new Plan(repository: new Repository($this->config), plan: 'default'))
         ->type()
-        ->toEqual('primary')
+        ->toEqual(expected: 'primary')
         ->productId()
-        ->toEqual('prod_0JkO18GJx0Vtux')
+        ->toEqual(expected: 'prod_0JkO18GJx0Vtux')
         ->priceId()
-        ->toEqual('price_Fxp5y8x0qjrm2jjk2nzuMpSF')
+        ->toEqual(expected: 'price_Fxp5y8x0qjrm2jjk2nzuMpSF')
         ->trialDays()
-        ->toEqual(14)
+        ->toEqual(expected: 14)
         ->hasGenericTrial()
         ->toBeTrue()
         ->allowPromotionCodes()
@@ -48,14 +48,14 @@ it('it resolves all values from configuration', function (): void {
         ->toBeTrue();
 });
 
-it('it resolves all required values from configuration', function (): void {
-    expect(new Plan(new Repository($this->config), 'basic'))
+it(description: 'it resolves all required values from configuration', closure: function (): void {
+    expect(value: new Plan(repository: new Repository($this->config), plan: 'basic'))
         ->type()
-        ->toEqual('basic')
+        ->toEqual(expected: 'basic')
         ->productId()
-        ->toEqual('prod_jad5TBR8eIwywy')
+        ->toEqual(expected: 'prod_jad5TBR8eIwywy')
         ->priceId()
-        ->toEqual('price_ruVAAh5dwyhwbtWIVQn0lUvc')
+        ->toEqual(expected: 'price_ruVAAh5dwyhwbtWIVQn0lUvc')
         ->trialDays()
         ->toBeFalse()
         ->hasGenericTrial()
@@ -68,10 +68,10 @@ it('it resolves all required values from configuration', function (): void {
         ->toBeFalse();
 });
 
-it('throws an exception when the plan price could not be parsed from configuration', function (): void {
-    expect(new Plan(new Repository($this->config), 'premium'))->priceId();
-})->throws(InvalidArgumentException::class, 'Invalid plan configuration');
+it(description: 'throws an exception when the plan price could not be parsed from configuration', closure: function (): void {
+    expect(value: new Plan(repository: new Repository($this->config), plan: 'premium'))->priceId();
+})->throws(exception: InvalidArgumentException::class, exceptionMessage: 'Invalid plan configuration');
 
-it('throws an exception when the plan product could not be parsed from configuration', function (): void {
-    expect(new Plan(new Repository($this->config), 'premium'))->productId();
-})->throws(InvalidArgumentException::class, 'Invalid plan configuration');
+it(description: 'throws an exception when the plan product could not be parsed from configuration', closure: function (): void {
+    expect(value: new Plan(repository: new Repository($this->config), plan: 'premium'))->productId();
+})->throws(exception: InvalidArgumentException::class, exceptionMessage: 'Invalid plan configuration');
