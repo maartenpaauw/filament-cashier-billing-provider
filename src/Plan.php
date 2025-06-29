@@ -4,59 +4,38 @@ declare(strict_types=1);
 
 namespace Maartenpaauw\Filament\Cashier;
 
-use Illuminate\Config\Repository;
 use InvalidArgumentException;
 
 final readonly class Plan
 {
     public function __construct(
-        private Repository $repository,
-        private string $plan = 'default',
-    ) {}
+        public string $type,
+        public string $productId,
+        public string $priceId,
+        public int | false $trialDays,
+        public bool $hasGenericTrial,
+        public bool $allowPromotionCodes,
+        public bool $collectTaxIds,
+        public bool $isMeteredPrice,
+    ) {
+        if ($this->type === '') {
+            throw new InvalidArgumentException(message: 'Type cannot be empty.');
+        }
 
-    public function type(): string
-    {
-        return $this->repository->get(key: "cashier.plans.$this->plan.type", default: $this->plan);
-    }
+        if ($this->productId === '') {
+            throw new InvalidArgumentException(message: 'Product ID cannot be empty.');
+        }
 
-    public function productId(): string
-    {
-        return $this->repository->get(
-            key: "cashier.plans.$this->plan.product_id",
-            default: static fn () => throw new InvalidArgumentException(message: 'Invalid plan configuration'),
-        );
-    }
+        if ($this->priceId === '') {
+            throw new InvalidArgumentException(message: 'Price ID cannot be empty.');
+        }
 
-    public function priceId(): string
-    {
-        return $this->repository->get(
-            key: "cashier.plans.$this->plan.price_id",
-            default: static fn () => throw new InvalidArgumentException(message: 'Invalid plan configuration'),
-        );
-    }
+        if ($this->trialDays !== false && $this->hasGenericTrial === true) {
+            throw new InvalidArgumentException(message: 'Only "trial days" or "has generic trial" can be used.');
+        }
 
-    public function trialDays(): int|false
-    {
-        return $this->repository->get(key: "cashier.plans.$this->plan.trial_days", default: false);
-    }
-
-    public function hasGenericTrial(): bool
-    {
-        return $this->repository->get(key: "cashier.plans.$this->plan.has_generic_trial", default: false);
-    }
-
-    public function allowPromotionCodes(): bool
-    {
-        return $this->repository->get(key: "cashier.plans.$this->plan.allow_promotion_codes", default: false);
-    }
-
-    public function collectTaxIds(): bool
-    {
-        return $this->repository->get(key: "cashier.plans.$this->plan.collect_tax_ids", default: false);
-    }
-
-    public function isMeteredPrice(): bool
-    {
-        return $this->repository->get(key: "cashier.plans.$this->plan.metered_price", default: false);
+        if ($this->trialDays !== false && $this->trialDays < 0) {
+            throw new InvalidArgumentException(message: 'Trial days must be greater than 0.');
+        }
     }
 }
