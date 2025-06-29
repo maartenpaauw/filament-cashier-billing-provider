@@ -12,7 +12,7 @@ final readonly class Plan
         public string $type,
         public string $productId,
         public string $priceId,
-        public int | false $trialDays,
+        public int|false $trialDays,
         public bool $hasGenericTrial,
         public bool $allowPromotionCodes,
         public bool $collectTaxIds,
