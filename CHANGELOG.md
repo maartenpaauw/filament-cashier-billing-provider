@@ -2,6 +2,20 @@
 
 All notable changes to `filament-cashier-billing-provider` will be documented in this file.
 
+## v3.0.0 - 2025-08-14
+
+### Added
+
+- Added support for Filament version 4.
+
+### Changed
+
+- Use a layered architecture.
+
+### Removed
+
+- Removed support for Filament version 3.
+
 ## v2.2.0 - 2025-03-02
 
 ### What's Changed
