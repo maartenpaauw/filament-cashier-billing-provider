@@ -2,6 +2,12 @@
 
 All notable changes to `filament-cashier-billing-provider` will be documented in this file.
 
+## v3.0.1 - 2025-08-22
+
+### Fixed
+
+- Allow `RedirectIfUserNotSubscribed` middleware to return regular `Response` instances.
+
 ## v3.0.0 - 2025-08-14
 
 ### Added
