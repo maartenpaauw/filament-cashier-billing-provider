@@ -8,7 +8,6 @@ use BackedEnum;
 use Closure;
 use Exception;
 use Filament\Pages\Dashboard;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -29,7 +28,7 @@ final readonly class RedirectIfUserNotSubscribed
      *
      * @throws Exception
      */
-    public function handle(Request $request, Closure $next, string ...$plans): RedirectResponse
+    public function handle(Request $request, Closure $next, string ...$plans): Response
     {
         $tenant = TenantRepository::make()->current();
 
