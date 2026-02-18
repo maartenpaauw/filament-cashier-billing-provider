@@ -2,6 +2,12 @@
 
 All notable changes to `filament-cashier-billing-provider` will be documented in this file.
 
+## v3.0.2 - 2026-02-18
+
+### Added
+
+- Support for Filament version 5.
+
 ## v3.0.1 - 2025-08-22
 
 ### Fixed
