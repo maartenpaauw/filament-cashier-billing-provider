@@ -19,7 +19,8 @@ final readonly class BillingProvider implements BillingProviderContract
      */
     public function __construct(
         private string|BackedEnum|array $plans = 'default',
-    ) {}
+    ) {
+    }
 
     #[Override]
     public function getRouteAction(): string|Closure|array
