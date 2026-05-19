@@ -10,7 +10,19 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         php: [8.5, 8.4, 8.3, 8.2]
+        laravel: [13.*, 12.*]
         stability: [prefer-lowest, prefer-stable]
+        include:
+          - laravel: 12.*
+            testbench: ^10.8
+          - laravel: 13.*
+            testbench: ^11.0
+        exclude:
+          - laravel: 13.*
+            php: 8.2
+          - laravel: 13.*
+            php: 8.3
+
 
     name: P${{ matrix.php }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
@@ -23,22 +35,20 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
-          coverage: none
+          coverage: xdebug
 
       - name: Setup problem matchers
         run: |
           echo "::add-matcher::${{ runner.tool_cache }}/php.json"
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-      - name: Install dependencies (Laravel 12)
-        run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --with="illuminate/support:^12.0"
+      - name: Install dependencies
+        run: |
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
-      - name: Execute tests (Laravel 12)
-        run: vendor/bin/pest
+      - name: List Installed Dependencies
+        run: composer show -D
 
-      - name: Install dependencies (Laravel 13)
-        if: matrix.php >= 8.3
-        run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --with="illuminate/support:^13.0"
-
-      - name: Execute tests (Laravel 13)
-        run: vendor/bin/pest
+      - name: Execute tests
+        run: vendor/bin/pest --ci

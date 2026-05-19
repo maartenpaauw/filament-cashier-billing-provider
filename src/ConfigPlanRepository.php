@@ -12,8 +12,7 @@ final readonly class ConfigPlanRepository implements PlanRepository
 {
     public function __construct(
         private Repository $config,
-    ) {
-    }
+    ) {}
 
     #[Override]
     public function all(): array
