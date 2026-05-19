@@ -2,6 +2,18 @@
 
 All notable changes to `filament-cashier-billing-provider` will be documented in this file.
 
+## v3.1.0 - 2026-05-19
+
+### Added
+
+- Support for Laravel 13
+- Support for PHP 8.5
+- Support for Laravel Cashier 16
+
+### Removed
+
+- Support for Laravel 11
+
 ## v3.0.2 - 2026-02-18
 
 ### Added
